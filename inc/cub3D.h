@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:23:39 by mtice             #+#    #+#             */
-/*   Updated: 2025/11/18 09:24:49 by mtice            ###   ########.fr       */
+/*   Updated: 2025/11/19 11:00:06 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,15 @@
 
 # include "macros.h"
 # include "structs.h"
+# include "../minilibx-linux/mlx.h"
+# include "../my_libft/libft/inc/libft.h"
+# include "../my_libft/ft_printf/inc/ft_printf_bonus.h"
+# include "../my_libft/gnl/inc/get_next_line_bonus.h"
+
 
 //main
+
+//render.c
+void	render(t_libx *libx);
 
 #endif

@@ -10,30 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-
-/*static int	ft_string_counter(char const *s, char c)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (s[i] != '\0')
-	{
-		while (s[i] == c && s[i] != '\0')
-			i++;
-		if (s[i] != c && s[i] != '\0')
-			j++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-	}
-	return (j);
-}*/
+#include "libft.h"
 
 static int	ft_string_counter(char const *s, char c)
 {

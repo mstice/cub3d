@@ -21,7 +21,7 @@ SRC := $(SRC_DIR)/ft_atoi.c \
 	   $(SRC_DIR)/ft_putchar_fd.c \
 	   $(SRC_DIR)/ft_putendl_fd.c \
 	   $(SRC_DIR)/ft_putnbr_fd.c \
-	   $(SRC_DIR)/ft_putstr_fd.c \
+	  $(SRC_DIR)/ft_putstr_fd.c \
 	   $(SRC_DIR)/ft_split.c \
 	   $(SRC_DIR)/ft_strchr.c \
 	   $(SRC_DIR)/ft_strdup.c \
