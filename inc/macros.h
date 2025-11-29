@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:25:59 by mtice             #+#    #+#             */
-/*   Updated: 2025/11/18 09:26:51 by mtice            ###   ########.fr       */
+/*   Updated: 2025/11/29 14:30:48 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,17 @@
 # define LEAVE_WINDOW_MASK "1L<<5"
 
 //-----------------------------------KEYCODES----------------------------------
-# define ESC 65307
+# define ESC_KEY 65307
+# define W_KEY 
+# define A_KEY
+# define S_KEY
+# define D_KEY
+# define UP_KEY 65364
+# define DOWN_KEY 65362
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
+# define SPACE_KEY 32
+# define MOUSE_KEY 
 
 //---------------------------------ERROR MESSAGES------------------------------
 # define ERR_USAGE "Usage: ./cub3D <map.cub>"
