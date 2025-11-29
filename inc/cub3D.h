@@ -13,6 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+//--------------------------------INCLUDED LIBRARIES---------------------------
 # include <fcntl.h> //open
 # include <unistd.h> //close //read //write //exit
 # include <stdio.h> //printf //perror
@@ -31,7 +32,7 @@
 # include "../my_libft/gnl/inc/get_next_line_bonus.h"
 
 
-//main
+//-------------------------------FUNCTIONS-------------------------------------
 
 //render.c
 void	render(t_libx *libx);

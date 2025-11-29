@@ -25,9 +25,15 @@ static void	draw(t_libx *libx, int x, int y)
 {
 	int	n;
 
-	n = 50;
+	n = 200;
 	while (n-- > 0)
-		my_mlx_pixel_put(libx, x--, y--, WHITE);
+	{
+		my_mlx_pixel_put(libx, x, y, YELLOW);
+		my_mlx_pixel_put(libx, x + 250, y + 250, GREEN);
+		my_mlx_pixel_put(libx, x, y - 100, BLUE);
+		my_mlx_pixel_put(libx, x - 100, y, RED);
+		x++, y++;
+	}
 }
 
 static int	on_key_down(int keycode, t_libx *libx)

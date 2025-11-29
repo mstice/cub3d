@@ -18,6 +18,7 @@ typedef struct s_three t_three;
 typedef struct s_two t_two;
 typedef struct s_libx t_libx;
 
+//--------------------------POINTER TO ALL TYPES OF DATA-----------------------
 typedef struct s_data
 {
 	t_three	**map3d;
@@ -25,6 +26,10 @@ typedef struct s_data
 	t_libx	*libx;
 }				t_data;
 
+//-------------------------INITIAL 3D COORDINATES------------------------------
+//After parsing the map, x and y coordiates are collected
+//z coordinates represent the height of the walls
+//colour is the colour of the area the coordinate represents (floor, sky, wall)
 typedef struct s_three
 {
 	int	x;
@@ -33,6 +38,9 @@ typedef struct s_three
 	int	colour;
 }				t_three;
 
+//-------------------------2D COORDINATES--------------------------------------
+//after taking 3d coordinates and performing transformations
+//gives the final x and y coordinates that are going to be used to render
 typedef struct s_two
 {
 	float	x;
@@ -40,6 +48,8 @@ typedef struct s_two
 	int		colour;
 }				t_two;
 
+//----------------------------MINILIBX-----------------------------------------
+//containes necessary informationi to render the window, images and plot pixels
 typedef struct s_libx
 {
 	void	*mlx_ptr;

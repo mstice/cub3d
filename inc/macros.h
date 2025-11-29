@@ -13,13 +13,22 @@
 #ifndef MACROS_H
 # define MACROS_H
 
+//------------------------------COLOURS----------------------------------------
+# define BLACK 0x000000
+# define WHITE 0xFFFFFF
+# define RED 0xF60000
+# define ORANGE 0xFF8C00
+# define YELLOW 0xFFEE00
+# define GREEN 0x4DE94C
+# define BLUE 0x3783FF
+# define PURPLE 0x4815AA
+
+//-----------------------------WINDOW SETTINGS---------------------------------
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
 # define WIN_NAME "cub3D"
 
-# define BLACK 0x000000
-# define WHITE 0xFFFFFF
-
+//----------------------------MLX HOOK VARIABLES-------------------------------
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
 # define ON_MOUSEDOWN 4
@@ -36,11 +45,15 @@
 # define ENTER_WINDOW_MASK "1L<<4"
 # define LEAVE_WINDOW_MASK "1L<<5"
 
+//-----------------------------------KEYCODES----------------------------------
 # define ESC 65307
 
+//---------------------------------ERROR MESSAGES------------------------------
 # define ERR_USAGE "Usage: ./cub3D <map.cub>"
-# define ERR_FILE "Invalid file"
-# define ERR_WALLS "Map is not covered by walls"
-# define ERR_POS "Starting position on map not specified"
+# define ERR_FILE_NOEXIST "File does not exist"
+# define ERR_FILE_INV "Invalid file"
+# define ERR_WALLS "Map is not surrounded by walls"
+# define ERR_NO_POS "Starting position on map not specified"
+# define ERR_MANY_POS "Too many positions on specified on map"
 
 #endif
