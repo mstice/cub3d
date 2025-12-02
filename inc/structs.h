@@ -6,23 +6,35 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:26:57 by mtice             #+#    #+#             */
-/*   Updated: 2025/11/29 14:30:51 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/02 17:35:31 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+typedef enum e_area t_area;
 typedef struct s_data t_data;
 typedef struct s_three t_three;
 typedef struct s_two t_two;
 typedef struct s_libx t_libx;
 
+//------------------------------TYPE OF MAP AREAS------------------------------
+typedef enum e_area
+{
+	UNDEFINED,
+	WALL,
+	OPEN,
+}			t_area;
+
 //--------------------------POINTER TO ALL TYPES OF DATA-----------------------
 typedef struct s_data
 {
+	char	**raw_map;
 	t_three	**map3d;
 	t_two	**map2d;
+	int		height;
+	int		width;
 	t_libx	*libx;
 }				t_data;
 

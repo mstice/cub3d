@@ -6,12 +6,15 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:25:59 by mtice             #+#    #+#             */
-/*   Updated: 2025/11/29 14:30:48 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/02 13:50:44 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
+
+# define SUCCESS 0
+# define FAILURE 1
 
 //------------------------------COLOURS----------------------------------------
 # define BLACK 0x000000
@@ -60,10 +63,15 @@
 
 //---------------------------------ERROR MESSAGES------------------------------
 # define ERR_USAGE "Usage: ./cub3D <map.cub>"
-# define ERR_FILE_NOEXIST "File does not exist"
+# define ERR_FILE_NAME "Invalid file name. Expected <map.cub>"
+# define ERR_FILE_NOEXIST "File does not exist or has no read permissions"
+# define ERR_FILE_EMPTY "File is empty"
+# define ERR_FILE_OPEN "Could not open file"
 # define ERR_FILE_INV "Invalid file"
 # define ERR_WALLS "Map is not surrounded by walls"
 # define ERR_NO_POS "Starting position on map not specified"
 # define ERR_MANY_POS "Too many positions on specified on map"
+
+# define ERR_MALLOC "Malloc error"
 
 #endif
