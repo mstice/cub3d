@@ -12,19 +12,29 @@
 
 #include "cub3D.h"
 
-static void	free_double(void **content, int	size)
+// static void	free_double(void **content, int	size)
+// {
+// 	while (size--)
+// 		free(content++);
+// 	free(content);
+// }
+
+static void	free_double_char(char **arr)
 {
-	while (size--)
-		free(content++);
-	free(content);
+	int	j;
+
+	j = 0;
+	while (arr[j] != NULL)
+		free(arr[j++]);
+	free(arr);
 }
 
 void	free_all(t_data *all)
 {
 	if (all->raw_map)
-		free_double((void *)all->raw_map, all->height);
-	if (all->map3d)
-		free_double((void *)all->map3d, all->height);
-	if (all->map2d)
-		free_double((void *)all->map2d, all->height);
+		free_double_char(all->raw_map);
+	// if (all->map3d)
+	// 	free_double((void *)all->map3d, all->height);
+	// if (all->map2d)
+	// 	free_double((void *)all->map2d, all->height);
 }

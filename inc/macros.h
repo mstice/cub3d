@@ -15,6 +15,7 @@
 
 # define SUCCESS 0
 # define FAILURE 1
+# define SUB 26
 
 //------------------------------COLOURS----------------------------------------
 # define BLACK 0x000000
@@ -62,15 +63,17 @@
 # define MOUSE_KEY 
 
 //---------------------------------ERROR MESSAGES------------------------------
+# define ERR "Error"
 # define ERR_USAGE "Usage: ./cub3D <map.cub>"
 # define ERR_FILE_NAME "Invalid file name. Expected <map.cub>"
 # define ERR_FILE_NOEXIST "File does not exist or has no read permissions"
 # define ERR_FILE_EMPTY "File is empty"
 # define ERR_FILE_OPEN "Could not open file"
 # define ERR_FILE_INV "Invalid file"
-# define ERR_WALLS "Map is not surrounded by walls"
-# define ERR_NO_POS "Starting position on map not specified"
-# define ERR_MANY_POS "Too many positions on specified on map"
+# define ERR_WALLS "Error\nMap is not surrounded by walls"
+# define ERR_NO_POS "Error\nPlayer spawn position on map not specified"
+# define ERR_MANY_POS "Error\nToo many player spawn positions specified on map"
+# define ERR_INV_EL "Error\nInvalid element found in file"
 
 # define ERR_MALLOC "Malloc error"
 

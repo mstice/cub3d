@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:26:22 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/02 17:42:30 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/03 11:10:45 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,85 +48,125 @@ static int	map_no_exist(char *map_name)
 //p_line -> processed line (after \n char removal)
 static int	record_map_attributes(t_data *all, int fd)
 {
-	int		height;
-	int		width;
 	char	*line;
 	char	*p_line;
 
-	height = 0;
-	width = 0;
 	line = get_next_line(fd);
 	if (!line)
 		ft_exit(ERR_FILE_EMPTY, EXIT_FAILURE);
 	while (line != NULL)
 	{
 		p_line = ft_strtrim(line, "\n");
-		free(line);
-		line = get_next_line(fd);
-		if (!p_line || p_line[0] == '\0')
+		if (!p_line || !(*p_line))
 		{
 			free(p_line);
+			free(line);
+			line = get_next_line(fd);
 			continue ;
 		}
-		if (width < ft_strlen(p_line))
-			width = ft_strlen(p_line);
+		if (all->width < ft_strlen(p_line))
+			all->width = ft_strlen(p_line);
+		free(line);
 		free(p_line);
-		height++;
+		all->height++;
+		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
-	all->height = height;
 	return (SUCCESS);
 }
 
 //-----------------------------------------------------------------------------
-//creates a 2-dimensional array of the map in chars
-//TODO: what if there are multiple empty lines or newlines in map?
+//TODO: free_all() is not well equipped to deal with exiting this function
 static int	create_raw_map(t_data *all, char *map_name)
 {
 	int		fd;
 	char	**map;
+	int		j;
 	char	*line;
-	int		i;
-	int		width;
 
 	fd = map_no_exist(map_name);
-	if (fd == -1)
-		ft_exit(ERR_FILE_OPEN, EXIT_FAILURE);
 	map = ft_calloc(sizeof(char *), all->height + 1);
 	if (!map)
-		ft_exit(ERR_MALLOC, EXIT_FAILURE);
-	i = -1;
-	width = 0;
-	while (i++ < all->height)
+		return (close(fd), free_all(all), ft_exit(ERR_MALLOC, EXIT_FAILURE), FAILURE);
+	j = 0;
+	while (j < all->height)
 	{
 		line = get_next_line(fd);
-		if (!line)
+		map[j] = ft_strtrim(line, "\n");
+		if (!map[j]|| !(*map[j]))
+		{
+			free(map[j]);
+			free(line);
 			continue ;
-		map[i] = ft_strtrim(line, "\n");
-		if (!map[i] || map[i][0] == '\0')
-			continue ;
-		if (width <= ft_strlen(map[i]))
-			width = ft_strlen(map[i]);
+		}
+		if (all->width < ft_strlen(map[j]))
+			all->width = ft_strlen(map[j]);
 		free(line);
+		all->height++;
+		j++;
 	}
-	map[i] = NULL;
+	map[j] = NULL;
 	all->raw_map = map;
 	close(fd);
 	return (SUCCESS);
 }
 
 //-----------------------------------------------------------------------------
-static int	create_uniform_map(t_data *all, char *map_name)
-{
-	int	fd;
+// static int	reformat_map(t_data *all, char *map_name)
+// {
+// 	int	fd;
+// 	int	j;
+// 	int	i;
+//
+// 	fd = map_no_exist(map_name);
+// 	j = 0;
+// 	while (all->raw_map[j] != NULL)
+// 	{
+// 		i = 0;
+// 		while (all->raw_map[j][i] != '\0')
+// 		{
+// 		}
+// 	}
+// 	close(fd);
+// 	return (SUCCESS);
+//  }
 
-	fd = map_no_exist(map_name);
-	if (fd == -1)
-		free_all(all), ft_exit(ERR_FILE_OPEN, EXIT_FAILURE)
-	
-	
+//-----------------------------------------------------------------------------
+static int	map_err_elements(t_data *all)
+{
+	int		j;
+	int		i;
+
+	j = 0;
+	while (all->raw_map[j] != NULL)
+	{
+		i = 0;
+		while (all->raw_map[j][i] != '\0')
+		{
+			// if ((j == 0 || j == all->height - 1) && all->raw_map[j][i] != ' '
+			// 	&& all->raw_map[j][i] != '1' && all->raw_map[j][i] != SUB)
+			// 	return (free_all(all), ft_exit(ERR_WALLS, EXIT_FAILURE), FAILURE);
+			// if ((i == 0 || i == all->width - 1) && all->raw_map[j][i] != '1')
+			// 	return (free_all(all), ft_exit(ERR_WALLS, EXIT_FAILURE), FAILURE);
+			if (all->raw_map[j][i] == 'N' || all->raw_map[j][i] == 'E'
+				|| all->raw_map[j][i] == 'S' || all->raw_map[j][i] == 'W')
+			{
+				if (all->player != NOPLAYER)
+					return (free_all(all), ft_exit(ERR_MANY_POS, EXIT_FAILURE), FAILURE);
+				all->player = all->raw_map[j][i] - 74;
+			}
+			if (!accepted(all->raw_map[j][i]))
+				return (free_all(all), ft_exit(ERR_INV_EL, EXIT_FAILURE), FAILURE);
+			i++;
+		}
+		j++;
+	}
+	if (all->player == NOPLAYER)
+		return (free_all(all), ft_exit(ERR_NO_POS, EXIT_FAILURE), FAILURE);
+	return (SUCCESS);
 }
+
 ////-----------------------------------------------------------------------------
 //static int	map_err_walls(t_data *all)
 //{
@@ -146,6 +186,8 @@ int	map_checks(t_data *all, char *map_name)
 		return (FAILURE);
 	else if (create_raw_map(all, map_name))
 		return (FAILURE);
+	else if (map_err_elements(all))
+		return (FAILURE);
 	int	i;
 	i = 0;
 	while (all->raw_map[i] != NULL)
@@ -153,10 +195,7 @@ int	map_checks(t_data *all, char *map_name)
 		printf("line[%d]: %s\n", i, all->raw_map[i]);
 		i++;
 	}
-	
 	// else if (map_err_walls(all))
-	// 	return (FAILURE);
-	// else if (map_err_elements(all))
 	// 	return (FAILURE);
 	return (SUCCESS);
 }

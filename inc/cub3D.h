@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:23:39 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/02 13:21:07 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/03 11:10:42 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ void	render(t_libx *libx);
 //--------------------------FUNCTIONS: UTILS-----------------------------------
 //init_utils.c
 void	init_t_data(t_data *all);
+
+//parsing_utils.c
+bool	accepted(char c);
+
+//free_utils.c
+void	free_all(t_data *all);
 
 //ft_exit.c
 void	ft_exit(char *err_msg, int exit_code);

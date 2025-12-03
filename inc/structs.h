@@ -14,6 +14,8 @@
 # define STRUCTS_H
 
 typedef enum e_area t_area;
+typedef enum e_spawn t_spawn;
+typedef struct s_map t_map;
 typedef struct s_data t_data;
 typedef struct s_three t_three;
 typedef struct s_two t_two;
@@ -27,6 +29,16 @@ typedef enum e_area
 	OPEN,
 }			t_area;
 
+//------------------------------PLAYER SPAWN POSITIONS-------------------------
+typedef enum e_spawn
+{
+	NOPLAYER,
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST
+}			t_spawn;
+
 //--------------------------POINTER TO ALL TYPES OF DATA-----------------------
 typedef struct s_data
 {
@@ -35,8 +47,17 @@ typedef struct s_data
 	t_two	**map2d;
 	int		height;
 	int		width;
+	t_spawn	player;
 	t_libx	*libx;
 }				t_data;
+
+//-----------------------------RAW MAP----------------------------------------
+// typedef struct s_map
+// {
+// 	char 			*line;
+// 	t_area			type;
+// 	struct s_map	*next;
+// }				t_map;
 
 //-------------------------INITIAL 3D COORDINATES------------------------------
 //After parsing the map, x and y coordiates are collected

@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 	// all.map2d = map_2d_map();
 	if (argc != 2)
 		ft_exit(ERR_USAGE, EXIT_FAILURE);
-	//init_t_data(&all);
+	init_t_data(&all);
 	if (parsing(&all, argv[1]))
 		return (FAILURE);
 	// render(&libx);

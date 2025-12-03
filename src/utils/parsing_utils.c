@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_t_data.c                                      :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 13:21:51 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/02 17:35:30 by mtice            ###   ########.fr       */
+/*   Created: 2025/12/03 11:07:34 by mtice             #+#    #+#             */
+/*   Updated: 2025/12/03 11:10:43 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_t_data(t_data *all)
+bool	accepted(char c)
 {
-	all->raw_map = NULL;
-	all->map_3d = NULL;
-	all->map_2d = NULL;
-	all->height = 0;
-	all->width = 0;
-	all->libx = NULL;
+	if (c != '1' && c != '0'
+		&& c != 'N' && c != 'E' && c != 'S' && c != 'W'
+		&& c != ' ')
+		return (false);
+	else
+		return (true);
 }
