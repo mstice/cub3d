@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:23:39 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 14:30:16 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/05 15:50:14 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,40 @@
 //---------------------------FUNCTIONS: PARSING--------------------------------
 
 //parsing.c
-int	parsing(t_data *all, char *map_name);
+int				parsing(t_data *all, char *map_name);
 
-////file_checks.c
-//int	file_checks(t_data *all, char *map_name);
+//file_checks.c
+int				file_checks(t_data *all, char *map_name);
+int				file_no_exist(char *file_name);
 
 //map_checks.c
-int	map_checks(t_data *all, char *map_name);
+int				map_checks(t_data *all, char *map_name);
 
 //map_reformats.c
-int	map_reformats(t_data *all);
+int				map_reformats(t_data *all);
 
 //---------------------------FUNCTIONS: EXECUTION------------------------------
 //render.c
-void	render(t_libx *libx);
+void			render(t_libx *libx);
 
 //--------------------------FUNCTIONS: UTILS-----------------------------------
 //init_utils.c
-void	init_t_data(t_data *all);
+void			init_t_data(t_data *all);
 
 //parsing_utils.c
-bool	accepted(char c);
-bool	is_wall(char c);
-bool	is_open(char c);
-void	safe_j(t_data *all, int *j, int i);
+bool			accepted(char c);
+bool			is_wall(char c);
+bool			is_open(char c);
+void			safe_j(t_data *all, int *j, int i);
 
+//render_utils.c
+char			*rgb_to_hex(unsigned char r, unsigned char g, unsigned char b);
+unsigned int	ft_atoh(const char *nptr);
 
 //free_utils.c
-void	free_all(t_data *all);
+void			free_all(t_data *all);
 
 //ft_exit.c
-void	ft_exit(char *err_msg, int exit_code);
+void			ft_exit(char *err_msg, int exit_code);
 
 #endif

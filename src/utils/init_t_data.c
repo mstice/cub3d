@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:21:51 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/02 17:35:30 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/05 15:29:12 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,11 @@ void	init_t_data(t_data *all)
 	all->height = 0;
 	all->width = 0;
 	all->player = NOPLAYER;
+	all->north_text = NULL;
+	all->south_text = NULL;
+	all->east_text = NULL;
+	all->west_text = NULL;
+	all->floor_col = BLACK;
+	all->ceiling_col = BLACK;
 	all->libx = NULL;
 }

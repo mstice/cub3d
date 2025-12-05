@@ -11,10 +11,11 @@ SRC_DIR := src
 OBJ_DIR := obj
 
 SRC :=	$(SRC_DIR)/main.c \
-		$(SRC_DIR)/utils/init_t_data.c \
 		$(SRC_DIR)/parsing/parsing.c \
+		$(SRC_DIR)/parsing/file_checks.c \
 		$(SRC_DIR)/parsing/map_checks.c \
 		$(SRC_DIR)/parsing/map_reformats.c \
+		$(SRC_DIR)/utils/init_t_data.c \
 		$(SRC_DIR)/utils/parsing_utils.c \
 		$(SRC_DIR)/utils/free_utils.c \
 		$(SRC_DIR)/utils/ft_exit.c \
