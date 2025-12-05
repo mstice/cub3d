@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:25:59 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/02 13:50:44 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/05 14:30:36 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 //-----------------------------WINDOW SETTINGS---------------------------------
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
+# define SKY_HEIGHT 200
+# define FLOOR_HEIGHT 200
 # define WIN_NAME "cub3D"
 
 //----------------------------MLX HOOK VARIABLES-------------------------------
@@ -70,10 +72,16 @@
 # define ERR_FILE_EMPTY "File is empty"
 # define ERR_FILE_OPEN "Could not open file"
 # define ERR_FILE_INV "Invalid file"
-# define ERR_WALLS "Error\nMap is not surrounded by walls"
-# define ERR_NO_POS "Error\nPlayer spawn position on map not specified"
-# define ERR_MANY_POS "Error\nToo many player spawn positions specified on map"
-# define ERR_INV_EL "Error\nInvalid element found in file"
+# define ERR_NO_TEXT "One or more textures not defined. Use: <NO/SO/WE/EA ./path>"
+# define ERR_PATH_TEXT "Invalid path to texture. Usage: <WO ./path>"
+# define ERR_DUP_TEXT "Duplicate textures"
+# define ERR_XPM_TEXT "Texture paths must lead to .xpm file"
+# define ERR_COL "Ceiling or floor colour not defined. Usage: <F/C 20, 10, 30>"
+# define ERR_INV_COL "Colour is invalid. Pick a range from 0 to 255"
+# define ERR_WALLS "Map is not surrounded by walls"
+# define ERR_NO_POS "Player spawn position on map not specified"
+# define ERR_MANY_POS "Too many player spawn positions specified on map"
+# define ERR_INV_EL "Invalid element found in file"
 
 # define ERR_MALLOC "Malloc error"
 

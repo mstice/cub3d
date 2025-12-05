@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:23:39 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/03 11:10:42 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/05 14:30:16 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,14 @@
 //parsing.c
 int	parsing(t_data *all, char *map_name);
 
+////file_checks.c
+//int	file_checks(t_data *all, char *map_name);
+
 //map_checks.c
 int	map_checks(t_data *all, char *map_name);
+
+//map_reformats.c
+int	map_reformats(t_data *all);
 
 //---------------------------FUNCTIONS: EXECUTION------------------------------
 //render.c
@@ -51,6 +57,10 @@ void	init_t_data(t_data *all);
 
 //parsing_utils.c
 bool	accepted(char c);
+bool	is_wall(char c);
+bool	is_open(char c);
+void	safe_j(t_data *all, int *j, int i);
+
 
 //free_utils.c
 void	free_all(t_data *all);

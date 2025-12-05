@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:26:57 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/02 17:35:31 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/05 14:00:48 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,19 @@ typedef enum e_spawn
 //--------------------------POINTER TO ALL TYPES OF DATA-----------------------
 typedef struct s_data
 {
-	char	**raw_map;
-	t_three	**map3d;
-	t_two	**map2d;
-	int		height;
-	int		width;
-	t_spawn	player;
-	t_libx	*libx;
+	char			**raw_map;
+	t_three			**map3d;
+	t_two			**map2d;
+	int				height;
+	int				width;
+	t_spawn			player;
+	char			*north_text;
+	char			*south_text;
+	char			*east_text;
+	char			*west_text;
+	unsigned int	floor_col;
+	unsigned int	ceiling_col;
+	t_libx			*libx;
 }				t_data;
 
 //-----------------------------RAW MAP----------------------------------------
