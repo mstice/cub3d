@@ -32,11 +32,11 @@ typedef enum e_area
 //------------------------------PLAYER SPAWN POSITIONS-------------------------
 typedef enum e_spawn
 {
-	NOPLAYER,
-	NORTH,
-	EAST,
-	SOUTH,
-	WEST
+	NOPLAYER = 0,
+	NORTH = 78,
+	EAST = 69,
+	SOUTH = 83,
+	WEST = 87
 }			t_spawn;
 
 //--------------------------POINTER TO ALL TYPES OF DATA-----------------------

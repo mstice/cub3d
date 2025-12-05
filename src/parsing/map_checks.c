@@ -17,6 +17,7 @@
 static int	map_invalid_name(char *map_name)
 {
 	char	*extension;
+	char	*real_map_name;
 
 	if (!map_name || map_name[0] == '\0')
 		return (FAILURE);
@@ -25,7 +26,14 @@ static int	map_invalid_name(char *map_name)
 		ft_exit(ERR_FILE_NAME, EXIT_FAILURE);
 	if (ft_strncmp(extension, ".cub\0", 5))
 		ft_exit(ERR_FILE_NAME, EXIT_FAILURE);
-	if (ft_strlen(map_name) < 5)
+	real_map_name = ft_strrchr(map_name, '/');
+	if (real_map_name)
+	{
+		real_map_name++;
+		if (ft_strlen(real_map_name) < 5)
+			ft_exit(ERR_FILE_NAME, EXIT_FAILURE);
+	}
+	else if (ft_strlen(map_name) < 5)
 		ft_exit(ERR_FILE_NAME, EXIT_FAILURE);
 	return (SUCCESS);
 }
@@ -53,7 +61,7 @@ static int	record_map_attributes(t_data *all, int fd)
 
 	line = get_next_line(fd);
 	if (!line)
-		ft_exit(ERR_FILE_EMPTY, EXIT_FAILURE);
+		close(fd), ft_exit(ERR_FILE_EMPTY, EXIT_FAILURE);
 	while (line != NULL)
 	{
 		p_line = ft_strtrim(line, "\n");
@@ -71,8 +79,6 @@ static int	record_map_attributes(t_data *all, int fd)
 		all->height++;
 		line = get_next_line(fd);
 	}
-	free(line);
-	close(fd);
 	return (SUCCESS);
 }
 
@@ -93,6 +99,8 @@ static int	create_raw_map(t_data *all, char *map_name)
 	while (j < all->height)
 	{
 		line = get_next_line(fd);
+		if (!line)
+			break ;
 		map[j] = ft_strtrim(line, "\n");
 		if (!map[j]|| !(*map[j]))
 		{
@@ -113,24 +121,33 @@ static int	create_raw_map(t_data *all, char *map_name)
 }
 
 //-----------------------------------------------------------------------------
-// static int	reformat_map(t_data *all, char *map_name)
-// {
-// 	int	fd;
-// 	int	j;
-// 	int	i;
-//
-// 	fd = map_no_exist(map_name);
-// 	j = 0;
-// 	while (all->raw_map[j] != NULL)
-// 	{
-// 		i = 0;
-// 		while (all->raw_map[j][i] != '\0')
-// 		{
-// 		}
-// 	}
-// 	close(fd);
-// 	return (SUCCESS);
-//  }
+ // static int	reformat_map(t_data *all, char *map_name)
+ // {
+ // 	int	fd;
+ // 	int	j;
+ // 	int	i;
+ // bool wall;
+ //
+ // 	fd = map_no_exist(map_name);
+ // wall = false;
+ // 	j = 0;
+ // 	while (all->raw_map[j] != NULL)
+ // 	{
+ // 		i = 0;
+ // 		while (all->raw_map[j][i] != '\0')
+ // 		{
+ // 		if (all->raw_map[j][i] == '1')
+ // 			wall = true;
+ // 		else if (all->raw_map[j][i] == ' ' && !wall)
+ // 			//nothing;
+ // 		else if (all->raw_map[j][i] == '0' && !wall)
+ // 		i++;
+ // 		}
+ // 	j++;
+ // 	}
+ // 	close(fd);
+ // 	return (SUCCESS);
+ //  }
 
 //-----------------------------------------------------------------------------
 static int	map_err_elements(t_data *all)
@@ -154,7 +171,7 @@ static int	map_err_elements(t_data *all)
 			{
 				if (all->player != NOPLAYER)
 					return (free_all(all), ft_exit(ERR_MANY_POS, EXIT_FAILURE), FAILURE);
-				all->player = all->raw_map[j][i] - 74;
+				all->player = all->raw_map[j][i];
 			}
 			if (!accepted(all->raw_map[j][i]))
 				return (free_all(all), ft_exit(ERR_INV_EL, EXIT_FAILURE), FAILURE);
@@ -186,8 +203,11 @@ int	map_checks(t_data *all, char *map_name)
 		return (FAILURE);
 	else if (create_raw_map(all, map_name))
 		return (FAILURE);
-	else if (map_err_elements(all))
+	close(fd);
+	if (map_err_elements(all))
 		return (FAILURE);
+	// else if (map_err_walls(all))
+	// 	return (FAILURE);
 	int	i;
 	i = 0;
 	while (all->raw_map[i] != NULL)
@@ -195,7 +215,5 @@ int	map_checks(t_data *all, char *map_name)
 		printf("line[%d]: %s\n", i, all->raw_map[i]);
 		i++;
 	}
-	// else if (map_err_walls(all))
-	// 	return (FAILURE);
 	return (SUCCESS);
 }

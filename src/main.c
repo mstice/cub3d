@@ -35,5 +35,6 @@ int	main(int argc, char *argv[])
 		return (FAILURE);
 	// render(&libx);
 	printf("Map is valid!\n");
+	free_all(&all);
 	return (SUCCESS);
 }
