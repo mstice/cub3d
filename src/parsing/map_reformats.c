@@ -18,9 +18,7 @@ static int	reformat_raw_map(t_data *all)
 {
 	int	j;
 	int	i;
-	bool wall;
 
-	wall = false;
 	j = 0;
 	while (all->raw_map[j] != NULL)
 	{

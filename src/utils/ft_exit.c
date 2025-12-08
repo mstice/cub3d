@@ -12,12 +12,16 @@
 
 #include "cub3D.h"
 
-void	ft_exit(char *err_msg, int exit_code)
+//-----------------------------------------------------------------------------
+//ONLY TO BE USED IN CASE OF EXIT_FAILURE!
+//function that displays error message, and frees before exiting with FAILURE
+void	ft_exit(t_data *all, char *err_msg)
 {
 	if (err_msg)
 	{
 		ft_putendl_fd(ERR, 2);
 		ft_putendl_fd(err_msg, 2);
 	}
-	exit(exit_code);
+	free_all(all);
+	exit(EXIT_FAILURE);
 }

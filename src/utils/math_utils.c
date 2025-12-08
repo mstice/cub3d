@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_t_data.c                                      :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 13:21:51 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 15:29:12 by mtice            ###   ########.fr       */
+/*   Created: 2025/12/07 16:32:40 by mtice             #+#    #+#             */
+/*   Updated: 2025/12/07 16:33:08 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_t_data(t_data *all)
+int	get_max(int a, int b)
 {
-	all->raw_map = NULL;
-	all->map3d = NULL;
-	all->map2d = NULL;
-	all->height = 0;
-	all->width = 0;
-	all->map_line = 1;
-	all->player = NOPLAYER;
-	all->north_text = NULL;
-	all->south_text = NULL;
-	all->east_text = NULL;
-	all->west_text = NULL;
-	all->floor = NULL;
-	all->ceiling = NULL;
-	all->libx = NULL;
+	if (a >= b)
+		return (a);
+	else
+		return (b);
 }

@@ -17,6 +17,7 @@ SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/parsing/map_reformats.c \
 		$(SRC_DIR)/utils/init_t_data.c \
 		$(SRC_DIR)/utils/parsing_utils.c \
+		$(SRC_DIR)/utils/math_utils.c \
 		$(SRC_DIR)/utils/free_utils.c \
 		$(SRC_DIR)/utils/ft_exit.c \
 		#$(SRC_DIR)/render.c

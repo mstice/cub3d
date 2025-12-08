@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:23:39 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 15:50:14 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/07 16:33:48 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				parsing(t_data *all, char *map_name);
 
 //file_checks.c
 int				file_checks(t_data *all, char *map_name);
-int				file_no_exist(char *file_name);
+int				file_no_exist(t_data *all, char *file_name);
 
 //map_checks.c
 int				map_checks(t_data *all, char *map_name);
@@ -66,10 +66,13 @@ void			safe_j(t_data *all, int *j, int i);
 char			*rgb_to_hex(unsigned char r, unsigned char g, unsigned char b);
 unsigned int	ft_atoh(const char *nptr);
 
+//math_utils.c
+int				get_max(int a, int b);
+
 //free_utils.c
 void			free_all(t_data *all);
 
 //ft_exit.c
-void			ft_exit(char *err_msg, int exit_code);
+void			ft_exit(t_data *all, char *err_msg);
 
 #endif
