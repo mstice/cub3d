@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:26:57 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 15:30:16 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/08 15:27:47 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_data
 	char			*west_text;
 	char			*floor;
 	char			*ceiling;
-	int				map_line;
+	int				map_start;
 	// unsigned int	floor;
 	// unsigned int	ceiling;
 	t_libx			*libx;

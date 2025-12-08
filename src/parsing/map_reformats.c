@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 13:50:50 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 14:30:31 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/08 15:27:50 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int	reformat_raw_map(t_data *all)
 			{
 				if (i == 0 || i == all->width - 1)
 					all->raw_map[j][i] = '1';
-				if (all->raw_map[j][i - 1] == '0'
+				if (i > 0 && i < ft_strlen(all->raw_map[j])
+					&& all->raw_map[j][i - 1] == '0'
 					&& all->raw_map[j][i + 1] == '0')
 					all->raw_map[j][i] = '0';
 				else
@@ -44,14 +45,7 @@ static int	reformat_raw_map(t_data *all)
 
 int	map_reformats(t_data *all)
 {
-	printf("----------BEFORE REFORMAT-------------\n");
 	int	i;
-	i = 0;
-	while (all->raw_map[i] != NULL)
-	{
-		printf("line[%d]: %s\n", i, all->raw_map[i]);
-		i++;
-	}
 	if (reformat_raw_map(all))
 		return (FAILURE);
 	printf("----------AFTER REFORMAT--------------\n");

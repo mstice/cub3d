@@ -19,7 +19,7 @@ void	init_t_data(t_data *all)
 	all->map2d = NULL;
 	all->height = 0;
 	all->width = 0;
-	all->map_line = 1;
+	all->map_start = 0;
 	all->player = NOPLAYER;
 	all->north_text = NULL;
 	all->south_text = NULL;

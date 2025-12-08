@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:26:22 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/07 16:49:12 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/08 15:50:23 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	create_raw_map(t_data *all, char *map_name)
 	all->raw_map = ft_calloc(sizeof(char *), all->height + 1);
 	if (!all->raw_map)
 		close(fd), ft_exit(all, ERR_MALLOC);
-	while (--all->map_line)
+	while (all->map_start-- > 0)
 		line = get_next_line(fd), free(line);
 	j = -1;
 	while (++j < all->height)
@@ -36,7 +36,7 @@ static int	create_raw_map(t_data *all, char *map_name)
 		if (!(all->raw_map[j])|| !(*all->raw_map[j]))
 		{
 			free(all->raw_map[j]), free(line);
-			continue ;
+			break ;
 		}
 		all->width = get_max(all->width, ft_strlen(all->raw_map[j]));
 		free(line);
@@ -101,11 +101,11 @@ static int	map_err_walls_horizontal(t_data *all)
 				ft_exit(all, ERR_MAP_WAL);
 			i++;
 		}
-		if (area != WALL)
+		if (area != WALL && printf("horizontal \n"))
 			ft_exit(all, ERR_MAP_WAL);
 		j++;
 	}
-	if (area != WALL)
+	if (area != WALL && printf("horizontal out \n"))
 		ft_exit(all, ERR_MAP_WAL);
 	return (SUCCESS);
 }
@@ -121,6 +121,7 @@ static int	map_err_walls_vertical(t_data *all)
 	area = UNDEFINED;
 	j = 0;
 	i = 0;
+	printf("all->height: %d\n", all->height);
 	while (all->raw_map[j] != NULL)
 	{
 		area = UNDEFINED;
@@ -134,7 +135,7 @@ static int	map_err_walls_vertical(t_data *all)
 				ft_exit(all, ERR_MAP_WAL);
 			safe_j(all, &j, i);
 		}
-		if (area != WALL)
+		if (area != WALL && printf("area: %d\n", area))
 			ft_exit(all, ERR_MAP_WAL);
 		i++;
 		safe_j(all, &j, i);

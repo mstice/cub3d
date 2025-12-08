@@ -20,5 +20,7 @@ int	parsing(t_data *all, char *map_name)
 		return (FAILURE);
 	else if (map_reformats(all))
 		return (FAILURE);
+	//else if (position_image(all))
+		//return (FAILURE);
 	return (SUCCESS);
 }

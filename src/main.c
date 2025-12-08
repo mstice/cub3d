@@ -20,8 +20,9 @@ int	main(int argc, char *argv[])
 		ft_exit(&all, ERR_USAGE);
 	init_t_data(&all);
 	if (parsing(&all, argv[1]))
-		return (FAILURE);
-	// render(&libx);
+		return (free_all(&all), FAILURE);
+	// else if (execution(&all))
+	// 	return (free_all(&all), FAILURE);
 	printf("Map is valid!\n");
 	free_all(&all);
 	return (SUCCESS);
