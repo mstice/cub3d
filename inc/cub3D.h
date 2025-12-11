@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:23:39 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/07 16:33:48 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/11 13:03:17 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int				parsing(t_data *all, char *map_name);
 
 //file_checks.c
 int				file_checks(t_data *all, char *map_name);
+int				file_invalid_name(char *file_name, char *req_extension);
 int				file_no_exist(t_data *all, char *file_name);
 
 //map_checks.c
@@ -47,6 +48,7 @@ int				map_checks(t_data *all, char *map_name);
 
 //map_reformats.c
 int				map_reformats(t_data *all);
+int				reformat_raw_map(t_data *all);
 
 //---------------------------FUNCTIONS: EXECUTION------------------------------
 //render.c
@@ -62,15 +64,22 @@ bool			is_wall(char c);
 bool			is_open(char c);
 void			safe_j(t_data *all, int *j, int i);
 
-//render_utils.c
-char			*rgb_to_hex(unsigned char r, unsigned char g, unsigned char b);
-unsigned int	ft_atoh(const char *nptr);
+//file_checks_utils.c
+bool			record_col(t_data *all, char *line, char *p_line, int fd);
+bool			record_text(t_data *all, char *line, char *p_line, int fd);
+int				invalid_texture(char *file_name);
 
+//render_utils.c
+char			ft_itoh(int n);
+unsigned int	rgb_to_hex(unsigned char r, unsigned char g, unsigned char b);
+unsigned int	ft_atoh(const char *nptr);
+//
 //math_utils.c
 int				get_max(int a, int b);
 
 //free_utils.c
 void			free_all(t_data *all);
+void			free_double_char(char **arr);
 
 //ft_exit.c
 void			ft_exit(t_data *all, char *err_msg);

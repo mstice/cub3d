@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------------
 //frees a 2d array
-static void	free_double_char(char **arr)
+void	free_double_char(char **arr)
 {
 	int	j;
 
@@ -42,10 +42,10 @@ static void	free_t_data(t_data *all)
 		free(all->east_text);
 	if (all->west_text)
 		free(all->west_text);
-	if (all->floor)
-		free(all->floor);
-	if (all->ceiling)
-		free(all->ceiling);
+	// if (all->floor)
+	// 	free(all->floor);
+	// if (all->ceiling)
+	// 	free(all->ceiling);
 }
 
 void	free_all(t_data *all)

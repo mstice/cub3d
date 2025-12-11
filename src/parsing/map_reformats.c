@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------------
 //reformats the map to be able to overcome empty lines and spaces
-static int	reformat_raw_map(t_data *all)
+int	reformat_raw_map(t_data *all)
 {
 	int	j;
 	int	i;
@@ -41,24 +41,10 @@ static int	reformat_raw_map(t_data *all)
 		j++;
 	}
 	return (SUCCESS);
- }
+}
 
 int	map_reformats(t_data *all)
 {
-	int	i;
-	if (reformat_raw_map(all))
-		return (FAILURE);
-	printf("----------AFTER REFORMAT--------------\n");
-	i = 0;
-	while (all->raw_map[i] != NULL)
-	{
-		printf("line[%d]: %s\n", i, all->raw_map[i]);
-		i++;
-	}
-
-	// else if (map_3d_map(all))
-	// 	return (FAILURE);
-	// else if (map_2d_map(all))
-	// 	return (FAILURE);
+	(void)all;
 	return (SUCCESS);
 }

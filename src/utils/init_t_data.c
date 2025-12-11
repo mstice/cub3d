@@ -25,7 +25,7 @@ void	init_t_data(t_data *all)
 	all->south_text = NULL;
 	all->east_text = NULL;
 	all->west_text = NULL;
-	all->floor = NULL;
-	all->ceiling = NULL;
+	all->floor = BLACK;
+	all->ceiling = BLACK;
 	all->libx = NULL;
 }

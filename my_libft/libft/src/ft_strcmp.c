@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 13:39:58 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/11 12:41:27 by mtice            ###   ########.fr       */
+/*   Created: 2025/12/11 14:30:57 by mtice             #+#    #+#             */
+/*   Updated: 2025/12/11 14:34:09 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-//-----------------------------------------------------------------------------
-//ONLY TO BE USED IN CASE OF EXIT_FAILURE!
-//function that displays error message, and frees before exiting with FAILURE
-void	ft_exit(t_data *all, char *err_msg)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (err_msg)
+	if (!s1 && !s2)
+		return (0);
+	else if (!s1)
+		return (-1);
+	else if (!s2)
+		return (1);
+	while (*s1 && *s2 && *s1 == *s2)
 	{
-		ft_putendl_fd(ERR, 2);
-		ft_putendl_fd(err_msg, 2);
+		s1++;
+		s2++;
 	}
-	if (all)
-		free_all(all);
-	exit(EXIT_FAILURE);
+	if (*s1 && *s2)
+		return (*s1 - *s2);
+	else
+		return (0);
 }

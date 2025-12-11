@@ -58,5 +58,6 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_isspace(char c);
 int		del_char(char *s, int pos);
 void	sub_char(char *s, char sub, char r);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

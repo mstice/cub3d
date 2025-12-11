@@ -101,11 +101,11 @@ static int	map_err_walls_horizontal(t_data *all)
 				ft_exit(all, ERR_MAP_WAL);
 			i++;
 		}
-		if (area != WALL && printf("horizontal \n"))
+		if (area != WALL)
 			ft_exit(all, ERR_MAP_WAL);
 		j++;
 	}
-	if (area != WALL && printf("horizontal out \n"))
+	if (area != WALL)
 		ft_exit(all, ERR_MAP_WAL);
 	return (SUCCESS);
 }
@@ -121,7 +121,6 @@ static int	map_err_walls_vertical(t_data *all)
 	area = UNDEFINED;
 	j = 0;
 	i = 0;
-	printf("all->height: %d\n", all->height);
 	while (all->raw_map[j] != NULL)
 	{
 		area = UNDEFINED;
@@ -135,7 +134,7 @@ static int	map_err_walls_vertical(t_data *all)
 				ft_exit(all, ERR_MAP_WAL);
 			safe_j(all, &j, i);
 		}
-		if (area != WALL && printf("area: %d\n", area))
+		if (area != WALL)
 			ft_exit(all, ERR_MAP_WAL);
 		i++;
 		safe_j(all, &j, i);
@@ -152,11 +151,9 @@ int	map_checks(t_data *all, char *map_name)
 {
 	if (create_raw_map(all, map_name))
 		return (FAILURE);
-	printf("-----------RAW_MAP------------\n");
-	int j = -1;
-	while (++j < all->height)
-		printf("line[%d]: %s\n", j, all->raw_map[j]);
 	if (map_err_elements(all))
+		return (FAILURE);
+	if (reformat_raw_map(all))
 		return (FAILURE);
 	if (map_err_walls_horizontal(all))
 		return (FAILURE);

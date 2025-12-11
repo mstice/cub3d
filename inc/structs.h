@@ -52,11 +52,11 @@ typedef struct s_data
 	char			*south_text;
 	char			*east_text;
 	char			*west_text;
-	char			*floor;
-	char			*ceiling;
+	// char			*floor;
+	// char			*ceiling;
 	int				map_start;
-	// unsigned int	floor;
-	// unsigned int	ceiling;
+	unsigned int	floor;
+	unsigned int	ceiling;
 	t_libx			*libx;
 }				t_data;
 

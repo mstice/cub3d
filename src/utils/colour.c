@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils.c                                     :+:      :+:    :+:   */
+/*   colour.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 15:38:09 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 15:42:12 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/11 18:11:06 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,22 @@ char	ft_itoh(int n)
 	return (0);
 }
 //-----------------------------------------------------------------------------
-unsigned int	rgb_to_hex(t_data *all, int r, int g, int b)
+unsigned int	rgb_to_hex(unsigned char r, unsigned char g, unsigned char b)
 {
 	char	hex[9];
 	int		d;
 
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		ft_exit(all, ERR_COL_INV);
+	// if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	// 	ft_exit(all, ERR_COL_INV);
 	d = 10000;
-	ft_memset(hex, '0', 8); //TODO: switch back
+	ft_memset(hex, '0', 8);
 	hex[1] = 'x';
 	hex[2] = ft_itoh(r / 16);
-	printf("%c\n", hex[2]);
 	hex[3] = ft_itoh(((r * d / 16) - (r / 16 * d)) * 16 / d);
-	printf("%c\n", hex[3]);
 	hex[4] = ft_itoh(g / 16);
-	printf("%c\n", hex[4]);
 	hex[5] = ft_itoh(((g * d / 16) - (g / 16 * d)) * 16 / d);
-	printf("%c\n", hex[5]);
 	hex[6] = ft_itoh(b / 16);
-	printf("%c\n", hex[6]);
 	hex[7] = ft_itoh(((b * d / 16) - (b / 16 * d)) * 16 / d);
-	printf("%c\n", hex[7]);
 	hex[8] = '\0';
 	return (ft_atoh(hex));
 }
