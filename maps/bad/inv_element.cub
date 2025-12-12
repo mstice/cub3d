@@ -1,0 +1,15 @@
+F 166,177,188
+C 100,100,010
+
+NO textures/wolfenstein/eagle.xpm
+EA textures/wolfenstein/barrel.xpm
+WE textures/wolfenstein/pillar.xpm
+SO textures/wolfenstein/mossy.xpm
+
+
+
+
+
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 0 0 0 0 0 0 0 0 0 w 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 

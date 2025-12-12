@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:26:22 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/08 15:50:23 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/12 16:39:59 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static int	create_raw_map(t_data *all, char *map_name)
 	int		j;
 	char	*line;
 
-	fd = file_no_exist(all, map_name);
+	fd = file_no_exist(map_name);
+	if (fd == -1)
+		ft_exit(all, ERR_FILE_NOEXIST);
 	all->raw_map = ft_calloc(sizeof(char *), all->height + 1);
 	if (!all->raw_map)
 		close(fd), ft_exit(all, ERR_MALLOC);
@@ -67,13 +69,13 @@ static int	map_err_elements(t_data *all)
 				all->player = all->raw_map[j][i];
 			}
 			if (!accepted(all->raw_map[j][i]))
-				ft_exit(all, ERR_INV_EL);
+				ft_exit(all, ERR_FILE_INV);
 			i++;
 		}
 		j++;
 	}
 	if (all->player == NOPLAYER)
-		ft_exit(all, ERR_NO_POS);
+		ft_exit(all, ERR_POS_NOEXIST);
 	return (SUCCESS);
 }
 
@@ -153,6 +155,13 @@ int	map_checks(t_data *all, char *map_name)
 		return (FAILURE);
 	if (map_err_elements(all))
 		return (FAILURE);
+	if (DEBUG)
+	{
+		int j = -1;
+		printf("-----------RAW_MAP----------------------\n");
+		while (++j < all->height)
+			printf("line[%d]: %s\n", j, all->raw_map[j]);
+	}
 	if (reformat_raw_map(all))
 		return (FAILURE);
 	if (map_err_walls_horizontal(all))

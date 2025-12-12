@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:29:21 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/08 15:40:17 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/12 16:23:51 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,14 @@ static void	free_t_data(t_data *all)
 	// 	free_double((void *)all->map3d, all->height);
 	// if (all->map2d)
 	// 	free_double((void *)all->map2d, all->height);
-	if (all->north_text)
-		free(all->north_text);
-	if (all->south_text)
-		free(all->south_text);
-	if (all->east_text)
-		free(all->east_text);
-	if (all->west_text)
-		free(all->west_text);
-	// if (all->floor)
-	// 	free(all->floor);
-	// if (all->ceiling)
-	// 	free(all->ceiling);
+	if (all->north)
+		free(all->north);
+	if (all->south)
+		free(all->south);
+	if (all->east)
+		free(all->east);
+	if (all->west)
+		free(all->west);
 }
 
 void	free_all(t_data *all)

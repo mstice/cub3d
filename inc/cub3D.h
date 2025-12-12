@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:23:39 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/11 13:03:17 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/12 16:40:01 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				parsing(t_data *all, char *map_name);
 //file_checks.c
 int				file_checks(t_data *all, char *map_name);
 int				file_invalid_name(char *file_name, char *req_extension);
-int				file_no_exist(t_data *all, char *file_name);
+int				file_no_exist(char *file_name);
 
 //map_checks.c
 int				map_checks(t_data *all, char *map_name);
@@ -67,7 +67,8 @@ void			safe_j(t_data *all, int *j, int i);
 //file_checks_utils.c
 bool			record_col(t_data *all, char *line, char *p_line, int fd);
 bool			record_text(t_data *all, char *line, char *p_line, int fd);
-int				invalid_texture(char *file_name);
+int				invalid_txt(char *file_name);
+int				invalid_col(t_data *all);
 
 //render_utils.c
 char			ft_itoh(int n);

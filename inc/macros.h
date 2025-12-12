@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:25:59 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/11 13:25:25 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/12 16:39:55 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SUCCESS 0
 # define FAILURE 1
-# define SUB 26
+# define DEBUG 1
 
 //------------------------------COLOURS----------------------------------------
 # define BLACK 0x000000
@@ -53,7 +53,7 @@
 
 //-----------------------------------KEYCODES----------------------------------
 # define ESC_KEY 65307
-# define W_KEY 
+# define W_KEY
 # define A_KEY
 # define S_KEY
 # define D_KEY
@@ -62,32 +62,32 @@
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
 # define SPACE_KEY 32
-# define MOUSE_KEY 
+# define MOUSE_KEY
 
 //---------------------------------ERROR MESSAGES------------------------------
 # define ERR "Error"
-# define ERR_USAGE "Usage: ./cub3D <map.cub>"
-# define ERR_FILE_NAME "Invalid file name. Expected <map.cub>"
+# define ERR_MALLOC "Malloc error"
+# define ERR_USAGE "Usage: ./cub3D <file.cub>"
+# define ERR_FILE_NAME "Invalid file name. Expected <file.cub>"
 # define ERR_FILE_NOEXIST "File does not exist or has no read permissions"
 # define ERR_FILE_EMPTY "File is empty"
-# define ERR_FILE_OPEN "Could not open file"
-# define ERR_FILE_INV "Invalid file"
+# define ERR_FILE_INV "Invalid element found in file"
 # define ERR_TXT_UND "One or more textures undefined. Use:<NO path/texture.xpm>"
 # define ERR_TXT_NOEXIST "A texture does not exist or has no read permissions"
 # define ERR_TXT_PATH "Invalid path to texture. Use: <WO path/to/texture.xpm>"
 # define ERR_TXT_DUP "Duplicate textures. All textures must be unique"
-# define ERR_TXT_XPM "Texture paths must lead to .xpm file"
-# define ERR_COL_CL "Ceiling colour not defined. Usage: <C 0, 0, 255>"
-# define ERR_COL_FL "Floor colour not defined. Usage: <F 128, 0, 0>"
-# define ERR_COL_DUP "Duplicate colours"
-# define ERR_COL_INV "Colour is invalid. Pick a range from 0 to 255"
+# define ERR_TXT_MANY "Too many textures defined"
+# define ERR_TXT_NAME "Invalid texture name. Expected <file.xpm>"
+# define ERR_COL_CL "Ceiling colour not properly defined. Usage: <C 0,170,200>"
+# define ERR_COL_FL "Floor colour not properly defined. Usage: <F 120,52,5>"
+# define ERR_COL_DUP "Ceiling and floor colours are the same"
+# define ERR_COL_INV "Some RGB values are invalid or undefined. Range: 0 to 255"
+# define ERR_COL_BAD "Ceiling or floor cannot be pure black or white"
+# define ERR_COL_MANY "More than one ceiling or floor colour defined"
+# define ERR_MAP_S "Map is too small. Usage: height > 2 && width > 2"
 # define ERR_MAP_WAL "Map is not surrounded by walls"
 # define ERR_MAP_LAST "Map is not the last content in file"
-# define ERR_MAP_S "Map is too small. Usage: height > 4 && width > 4"
-# define ERR_NO_POS "Player spawn position on map not specified"
+# define ERR_POS_NOEXIST "Player spawn position on map not specified"
 # define ERR_POS_DUP "Too many player spawn positions specified on map"
-# define ERR_INV_EL "Invalid element found in file"
-
-# define ERR_MALLOC "Malloc error"
 
 #endif

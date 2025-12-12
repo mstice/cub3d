@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:26:57 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/08 15:27:47 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/12 16:38:00 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,17 @@ typedef struct s_data
 	t_two			**map2d;
 	int				height;
 	int				width;
-	t_spawn			player;
-	char			*north_text;
-	char			*south_text;
-	char			*east_text;
-	char			*west_text;
-	// char			*floor;
-	// char			*ceiling;
 	int				map_start;
-	unsigned int	floor;
-	unsigned int	ceiling;
+	t_spawn			player;
+	char			*north;
+	char			*south;
+	char			*east;
+	char			*west;
+	int	floor;
+	int	ceiling;
 	t_libx			*libx;
 }				t_data;
 
-//-----------------------------RAW MAP----------------------------------------
-// typedef struct s_map
-// {
-// 	char 			*line;
-// 	t_area			type;
-// 	struct s_map	*next;
-// }				t_map;
 
 //-------------------------INITIAL 3D COORDINATES------------------------------
 //After parsing the map, x and y coordiates are collected

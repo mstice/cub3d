@@ -23,6 +23,7 @@ int	main(int argc, char *argv[])
 		return (free_all(&all), FAILURE);
 	// else if (execution(&all))
 	// 	return (free_all(&all), FAILURE);
+	printf("Map is valid!\n");
 	free_all(&all);
 	return (SUCCESS);
 }

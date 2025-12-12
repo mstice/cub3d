@@ -21,10 +21,10 @@ void	init_t_data(t_data *all)
 	all->width = 0;
 	all->map_start = 0;
 	all->player = NOPLAYER;
-	all->north_text = NULL;
-	all->south_text = NULL;
-	all->east_text = NULL;
-	all->west_text = NULL;
+	all->north = NULL;
+	all->south = NULL;
+	all->east = NULL;
+	all->west = NULL;
 	all->floor = BLACK;
 	all->ceiling = BLACK;
 	all->libx = NULL;

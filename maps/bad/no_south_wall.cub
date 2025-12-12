@@ -1,0 +1,34 @@
+
+
+
+
+
+
+
+
+
+
+F 1,1,1
+C 2,2,2
+
+NO textures/wolfenstein/eagle.xpm
+EA textures/wolfenstein/greenlight.xpm
+SO textures/wolfenstein/grey_stone.xpm
+WE textures/wolfenstein/red_brick.xpm
+
+
+
+
+11111
+10001
+10S01
+10001
+10001
+10001
+11001
+10001
+10001
+10001
+10001
+10001
+11011

@@ -16,7 +16,7 @@ SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/parsing/map_checks.c \
 		$(SRC_DIR)/parsing/map_reformats.c \
 		$(SRC_DIR)/utils/init_t_data.c \
-		$(SRC_DIR)/utils/parsing_utils.c \
+		$(SRC_DIR)/utils/map_checks_utils.c \
 		$(SRC_DIR)/utils/file_checks_utils.c \
 		$(SRC_DIR)/utils/math_utils.c \
 		$(SRC_DIR)/utils/colour.c \
@@ -27,6 +27,7 @@ SRC :=	$(SRC_DIR)/main.c \
 
 OBJ := $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC:.c=.o))
 INCLUDE := inc
+DEPS := $(SRC:.c=.d)
 
 LIBFT := my_libft/libft/libft.a
 FT_PRINTF := my_libft/ft_printf/ft_printf.a
@@ -34,7 +35,7 @@ GNL := my_libft/gnl/gnl.a
 MINILIBX := minilibx-linux/libmlx_Linux.a
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -g3 -I$(INCLUDE) #-O3 
+CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I$(INCLUDE) #-O3 
 
 RM := rm -rf
 
@@ -50,6 +51,8 @@ $(OBJ): $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 		@mkdir -p $(OBJ_DIR)/utils
 		@$(CC) $(CFLAGS) -c -o $@ $^
 		@echo "${CYAN} ~ Compiled -> ${MAGENTA}$< ${RESET}"
+
+-include $(DEPS)
 
 $(LIBFT):
 		@make -C my_libft/libft

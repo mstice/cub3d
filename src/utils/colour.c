@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 15:38:09 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/11 18:11:06 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/12 16:21:21 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ unsigned int	rgb_to_hex(unsigned char r, unsigned char g, unsigned char b)
 	char	hex[9];
 	int		d;
 
-	// if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-	// 	ft_exit(all, ERR_COL_INV);
 	d = 10000;
 	ft_memset(hex, '0', 8);
 	hex[1] = 'x';

@@ -1,0 +1,25 @@
+F 45,78,12
+
+
+
+NO textures/wolfenstein/eagle.xpm
+EA textures/wolfenstein/barrel.xpm
+SO textures/wolfenstein/colorstone.xpm
+WE textures/wolfenstein/bluestone.xpm
+
+
+
+C           78,,89,56
+
+
+
+
+
+
+
+
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1
+1 S W 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1

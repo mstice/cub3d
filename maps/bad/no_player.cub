@@ -1,0 +1,29 @@
+
+
+
+
+
+
+
+F 4,29,10
+C 124,96,87
+
+
+NO textures/wolfenstein/barrel.xpm
+EA textures/wolfenstein/mossy.xpm
+SO textures/wolfenstein/pillar.xpm
+WE textures/wolfenstein/eagle.xpm
+
+
+
+
+
+
+
+1 1
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 
+1 0 0 0 0 0 0 0 0 0 0 1
+1 1 1 1 1 1 1 0 0 0 0 1
+1 0 0 0 0 0 0 0 0 0 0 1
+1 1 1 1 1 1 1 1 1 1 1 1

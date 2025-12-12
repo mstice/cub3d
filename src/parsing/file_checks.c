@@ -31,23 +31,23 @@ int	file_invalid_name(char *file_name, char *req_extension)
 	if (real_file_name)
 	{
 		real_file_name++;
-		if (ft_strlen(real_file_name) < ft_strlen(req_extension))
+		if (ft_strlen(real_file_name) <= ft_strlen(req_extension))
 			return (FAILURE);
 	}
-	else if (ft_strlen(file_name) < ft_strlen(req_extension))
+	else if (ft_strlen(file_name) <= ft_strlen(req_extension))
 		return (FAILURE);
 	return (SUCCESS);
 }
 
 //-----------------------------------------------------------------------------
 //checks if file exists and has correct permissions
-int	file_no_exist(t_data *all, char *file_name)
+int	file_no_exist(char *file_name)
 {
 	int	fd;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0 || fd > 1024)
-		ft_exit(all, ERR_FILE_NOEXIST);
+		return (-1);
 	return (fd);
 }
 
@@ -58,22 +58,17 @@ static int	file_err_elements(t_data *all, int fd)
 	int	ret;
 
 	ret = FAILURE;
-	if (!all->ceiling) //&& valid_col(all->ceiling))
-		ft_putendl_fd(ERR, 2), ft_putendl_fd(ERR_COL_CL, 2);
-	else if (!all->floor) //&& valid_col(all->floor))
-		ft_putendl_fd(ERR, 2), ft_putendl_fd(ERR_COL_FL, 2);
-	else if (!all->north_text || !all->east_text
-			|| !all->south_text || !all->west_text)
-		ft_putendl_fd(ERR, 2), ft_putendl_fd(ERR_TXT_NOEXIST, 2);
-	else if (invalid_texture(all->north_text) || invalid_texture(all->east_text)
-			|| invalid_texture (all->south_text) || invalid_texture(all->west_text))
-		ft_putendl_fd(ERR, 2), ft_putendl_fd(ERR_TXT_PATH, 2);
-	else if (!ft_strcmp(all->north_text, all->east_text)
-			|| !ft_strcmp(all->north_text, all->south_text)
-		  	|| !ft_strcmp(all->north_text, all->west_text)
-		  	|| !ft_strcmp(all->east_text, all->south_text)
-		  	|| !ft_strcmp(all->east_text, all->west_text)
-		  	|| !ft_strcmp(all->south_text, all->west_text))
+	if (invalid_col(all))
+		close(fd), ft_exit(all, NULL);
+	else if (invalid_txt(all->north) || invalid_txt(all->east)
+			|| invalid_txt (all->south) || invalid_txt(all->west))
+		close(fd), ft_exit(all, NULL);
+	else if (!ft_strcmp(all->north, all->east)
+			|| !ft_strcmp(all->north, all->south)
+		  	|| !ft_strcmp(all->north, all->west)
+		  	|| !ft_strcmp(all->east, all->south)
+		  	|| !ft_strcmp(all->east, all->west)
+		  	|| !ft_strcmp(all->south, all->west))
 			ft_putendl_fd(ERR, 2), ft_putendl_fd(ERR_TXT_DUP, 2);
 	else
 		ret = SUCCESS;
@@ -100,7 +95,6 @@ static int	record_file_attributes(t_data *all, int fd)
 		if (p_line && *p_line
 			&& (!record_col(all, line, p_line, fd) && !record_text(all, line, p_line, fd)))
 		{
-			// file_err_elements(all, line, p_line, fd);
 			while (ft_isspace(*p_line))
 				p_line++;
 			if (*p_line)
@@ -111,12 +105,12 @@ static int	record_file_attributes(t_data *all, int fd)
 			}
 		}
 		free(line), free(p_line);
-		if (all->floor && all->ceiling && all->north_text
-			&& all->east_text && all->south_text && all->west_text)
+		if (all->floor && all->ceiling && all->north
+			&& all->east && all->south && all->west)
 			break ;
 		line = get_next_line(fd);
 	}
-	return (file_err_elements(all, fd));
+	return (SUCCESS);
 }
 
 //-----------------------------------------------------------------------------
@@ -132,7 +126,7 @@ static int	record_map_attributes(t_data *all, int fd)
 	if (!line)
 		close(fd), ft_exit(all, ERR_MALLOC);
 	p_line = ft_strtrim(line, "\n");
-	while ((!p_line || !(*p_line)) && all->map_start < 100)
+	while ((!p_line || !(*p_line)) && all->map_start < 1000)
 	{
 		free(p_line), free(line);
 		line = get_next_line(fd);
@@ -164,8 +158,12 @@ int	file_checks(t_data *all, char *file_name)
 
 	if (file_invalid_name(file_name, ".cub"))
 		ft_exit(all, ERR_FILE_NAME);
-	fd = file_no_exist(all, file_name);
+	fd = file_no_exist(file_name);
+	if (fd == -1)
+		ft_exit(all, ERR_FILE_NOEXIST);
 	if (record_file_attributes(all, fd))
+		return (FAILURE);
+	if (file_err_elements(all, fd))
 		return (FAILURE);
 	if (record_map_attributes(all, fd))
 		return (FAILURE);
