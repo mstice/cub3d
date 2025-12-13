@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_t_data.c                                      :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 13:21:51 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 15:29:12 by mtice            ###   ########.fr       */
+/*   Created: 2025/12/13 11:02:25 by mtice             #+#    #+#             */
+/*   Updated: 2025/12/13 11:03:17 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_t_data(t_data *all)
+int	on_key_down(int keycode, t_data *all)
 {
-	all->raw_map = NULL;
-	all->map3d = NULL;
-	all->map2d = NULL;
-	all->height = 0;
-	all->width = 0;
-	all->map_start = 0;
-	all->player = NOPLAYER;
-	all->north = NULL;
-	all->south = NULL;
-	all->east = NULL;
-	all->west = NULL;
-	all->floor = BLACK;
-	all->ceiling = BLACK;
-	all->bounds = 0;
-	all->libx = NULL;
+	if (keycode == ESC_KEY)
+		mlx_hook(all->win_ptr, ON_DESTROY, 0L, mlx_loop_end, all->mlx_ptr);
+	return (0);
 }

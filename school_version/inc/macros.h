@@ -6,7 +6,7 @@
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:25:59 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/12 16:39:55 by mtice            ###   ########.fr       */
+/*   Updated: 2025/12/13 13:58:14 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define GREEN 0x4DE94C
 # define BLUE 0x3783FF
 # define PURPLE 0x4815AA
+# define BROWN 0x964B00
 
 //-----------------------------WINDOW SETTINGS---------------------------------
 # define WIN_WIDTH 1000

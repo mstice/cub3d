@@ -42,21 +42,34 @@ typedef enum e_spawn
 //--------------------------POINTER TO ALL TYPES OF DATA-----------------------
 typedef struct s_data
 {
-	char			**raw_map;
-	t_three			**map3d;
-	t_two			**map2d;
-	int				height;
-	int				width;
-	int				map_start;
-	t_spawn			player;
-	char			*north;
-	char			*south;
-	char			*east;
-	char			*west;
-	int				floor;
-	int				ceiling;
-	bool			bounds;
-	t_libx			*libx;
+	char		**raw_map;
+	t_three		**map3d;
+	t_two		**map2d;
+	int			height;
+	int			width;
+	int			map_start;
+	t_spawn		player;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	int			floor;
+	int			ceiling;
+	int			bounds;
+	int			zoom;
+	int			elev;
+	int			max_elev;
+	int			x_translate;
+	int			y_translate;
+	int			theta;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img1;
+	void		*img2;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 }				t_data;
 
 //-------------------------INITIAL 3D COORDINATES------------------------------
@@ -80,20 +93,5 @@ typedef struct s_two
 	float	y;
 	int		colour;
 }				t_two;
-
-//----------------------------MINILIBX-----------------------------------------
-//containes necessary informationi to render the window, images and plot pixels
-typedef struct s_libx
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img1;
-	void	*img2;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_libx;
-
 
 #endif

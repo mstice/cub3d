@@ -28,5 +28,5 @@ void	init_t_data(t_data *all)
 	all->floor = BLACK;
 	all->ceiling = BLACK;
 	all->bounds = 0;
-	all->libx = NULL;
+	all->theta = 45;
 }

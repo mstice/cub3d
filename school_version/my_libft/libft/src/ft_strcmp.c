@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_t_data.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 13:21:51 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/05 15:29:12 by mtice            ###   ########.fr       */
+/*   Created: 2025/12/11 14:30:57 by mtice             #+#    #+#             */
+/*   Updated: 2025/12/11 14:34:09 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	init_t_data(t_data *all)
+int	ft_strcmp(char *s1, char *s2)
 {
-	all->raw_map = NULL;
-	all->map3d = NULL;
-	all->map2d = NULL;
-	all->height = 0;
-	all->width = 0;
-	all->map_start = 0;
-	all->player = NOPLAYER;
-	all->north = NULL;
-	all->south = NULL;
-	all->east = NULL;
-	all->west = NULL;
-	all->floor = BLACK;
-	all->ceiling = BLACK;
-	all->bounds = 0;
-	all->libx = NULL;
+	if (!s1 && !s2)
+		return (0);
+	else if (!s1)
+		return (-1);
+	else if (!s2)
+		return (1);
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	if (*s1 && *s2)
+		return (*s1 - *s2);
+	else
+		return (0);
 }
