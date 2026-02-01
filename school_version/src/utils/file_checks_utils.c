@@ -49,7 +49,7 @@ static int	get_colour_values(char *colour)
 //-----------------------------------------------------------------------------
 //records the colours and stores them in the t_data struct
 //RETURN_VALUE: returns TRUE if a colour has been found, FALSE if not
-bool	record_col(t_data *all, char *line, char *p_line, int fd)
+bool	record_col(t_data *all, char *p_line, int fd)
 {
 	bool recorded;
 
@@ -61,10 +61,8 @@ bool	record_col(t_data *all, char *line, char *p_line, int fd)
 	else if ((ft_strchr (p_line, 'F') && all->floor)
 			|| (ft_strchr(p_line, 'C') && all->ceiling))
 	{
-		if (line)
-			free(line);
 		if (p_line)
-			free(line);
+			free(p_line);
 		close(fd), ft_exit(all, ERR_COL_MANY);
 	}
 	else
@@ -104,7 +102,7 @@ static char	*find_text(char *p_line)
 //-----------------------------------------------------------------------------
 //records the textures and stores them in the t_data struct
 //RETURN_VALUE: returns TRUE if a texture has been found, FALSE if not
-bool	record_text(t_data *all, char *line, char *p_line, int fd)
+bool	record_text(t_data *all, char *p_line, int fd)
 {
 	bool recorded;
 
@@ -117,17 +115,25 @@ bool	record_text(t_data *all, char *line, char *p_line, int fd)
 		all->south = find_text(p_line);
 	else if (!all->west && ft_strnstr(p_line, "WE", ft_strlen(p_line)))
 		all->west = find_text(p_line);
-	else if ((all->north && ft_strnstr(p_line, "NO", ft_strlen(p_line)))
-			|| (all->east && ft_strnstr(p_line, "EA", ft_strlen(p_line)))
-			|| (all->south && ft_strnstr(p_line, "SO", ft_strlen(p_line)))
-			|| (all->west && ft_strnstr(p_line, "WE", ft_strlen(p_line))))
-	{
-		if (line)
-			free(line);
-		if (p_line)
-			free(p_line);
-		close(fd), ft_exit(all, ERR_TXT_DUP);
-	}
+	else if (all->north && ft_strnstr(p_line, "NO", ft_strlen(p_line)))
+		free(p_line), close(fd), ft_exit(all, ERR_TXT_DUP);
+	else if (all->east && ft_strnstr(p_line, "EA", ft_strlen(p_line)))
+		free(p_line), close(fd), ft_exit(all, ERR_TXT_DUP);
+	else if (all->south && ft_strnstr(p_line, "WE", ft_strlen(p_line)))
+		free(p_line), close(fd), ft_exit(all, ERR_TXT_DUP);
+	else if (all->west && ft_strnstr(p_line, "SO", ft_strlen(p_line)))
+		free(p_line), close(fd), ft_exit(all, ERR_TXT_DUP);
+	// else if ((all->north && ft_strnstr(p_line, "NO", ft_strlen(p_line)))
+	// 		|| (all->east && ft_strnstr(p_line, "EA", ft_strlen(p_line)))
+	// 		|| (all->south && ft_strnstr(p_line, "SO", ft_strlen(p_line)))
+	// 		|| (all->west && ft_strnstr(p_line, "WE", ft_strlen(p_line))))
+	// {
+	// 	if (line)
+	// 		free(line);
+	// 	if (p_line)
+	// 		free(p_line);
+	// 	close(fd), ft_exit(all, ERR_TXT_DUP);
+	// }
 	else
 		recorded = false;
 	return (recorded);

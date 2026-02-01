@@ -78,8 +78,8 @@ bool			is_open(char c);
 void			safe_j(t_data *all, int *j, int i);
 
 //file_checks_utils.c
-bool			record_col(t_data *all, char *line, char *p_line, int fd);
-bool			record_text(t_data *all, char *line, char *p_line, int fd);
+bool			record_col(t_data *all, char *p_line, int fd);
+bool			record_text(t_data *all, char *p_line, int fd);
 int				invalid_txt(char *file_name);
 int				invalid_col(t_data *all);
 
@@ -96,6 +96,7 @@ unsigned int	ft_atoh(const char *nptr);
 int				get_max(int a, int b);
 
 //free_utils.c
+void			ft_free(char **s);
 void			free_all(t_data *all);
 void			free_double_char(char **arr);
 

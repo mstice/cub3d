@@ -24,7 +24,7 @@ int	main(int argc, char *argv[])
 	// else if (execution(&all))
 	// 	return (free_all(&all), FAILURE);
 	printf("Map is valid!\n");
-	render(&all);
+	//render(&all);
 	free_all(&all);
 	return (SUCCESS);
 }

@@ -81,7 +81,39 @@ static int	file_err_elements(t_data *all, int fd)
 //records textures, colours, and the line at which the map contents start
 //stores this information in the t_data struct
 //p_line: processed line (after \n char removal)
-static int	record_file_attributes(t_data *all, int fd)
+// static int	record_file_attributes(t_data *all, int fd)
+// {
+// 	char	*line;
+// 	char	*p_line;
+//
+// 	line = get_next_line(fd);
+// 	if (!line)
+// 		close(fd), ft_exit(all, ERR_FILE_EMPTY);
+// 	while (line != NULL && ++(all->map_start))
+// 	{
+// 		p_line = ft_strtrim(line, "\n");
+// 		if (p_line && *p_line
+// 			&& (!record_col(all, line, p_line, fd) && !record_text(all, line, p_line, fd)))
+// 		{
+// 			while (ft_isspace(*p_line))
+// 				p_line++;
+// 			if (*p_line)
+// 			{
+// 				free(p_line), free(line);
+// 				file_err_elements(all, fd);
+// 				close(fd), ft_exit(all, ERR_MAP_LAST);
+// 			}
+// 		}
+// 		free(line), free(p_line);
+// 		if (all->floor && all->ceiling && all->north
+// 			&& all->east && all->south && all->west)
+// 			break ;
+// 		line = get_next_line(fd);
+// 	}
+// 	return (SUCCESS);
+// }
+//
+static char	*record_file_attributes(t_data *all, int fd)
 {
 	char	*line;
 	char	*p_line;
@@ -89,43 +121,39 @@ static int	record_file_attributes(t_data *all, int fd)
 	line = get_next_line(fd);
 	if (!line)
 		close(fd), ft_exit(all, ERR_FILE_EMPTY);
-	while (line != NULL && ++(all->map_start))
+	while (line != NULL && ++all->map_start)
 	{
 		p_line = ft_strtrim(line, "\n");
-		if (p_line && *p_line
-			&& (!record_col(all, line, p_line, fd) && !record_text(all, line, p_line, fd)))
+		free(line);
+		if (p_line && *p_line)
 		{
-			while (ft_isspace(*p_line))
-				p_line++;
-			if (*p_line)
+			if (!record_col(all, p_line, fd) && !record_text(all, p_line, fd))
 			{
-				free(p_line), free(line);
-				file_err_elements(all, fd);
-				close(fd), ft_exit(all, ERR_MAP_LAST);
+				while (ft_isspace(*p_line))
+					p_line++;
+				if (ft_isdigit(*p_line) && --all->map_start)
+					return (p_line);
+				else if (*p_line)
+					free(p_line), file_err_elements(all, fd), close(fd), ft_exit(all, ERR_MAP_LAST);
 			}
 		}
-		free(line), free(p_line);
-		if (all->floor && all->ceiling && all->north
-			&& all->east && all->south && all->west)
-			break ;
+		free(p_line);
 		line = get_next_line(fd);
 	}
-	return (SUCCESS);
+	return (NULL);
 }
 
 //-----------------------------------------------------------------------------
 //checks if map is populated
 //records height and maximum width of the map
 //stores this information in the t_data struct
-static int	record_map_attributes(t_data *all, int fd)
+static int	record_map_attributes(t_data *all, int fd, char *map_start)
 {
 	char	*line;
 	char	*p_line;
 
-	line = get_next_line(fd);
-	if (!line)
-		close(fd), ft_exit(all, ERR_MALLOC);
-	p_line = ft_strtrim(line, "\n");
+	line = ft_strdup("");
+	p_line = map_start;
 	while ((!p_line || !(*p_line)) && all->map_start < 1000)
 	{
 		free(p_line), free(line);
@@ -154,18 +182,20 @@ static int	record_map_attributes(t_data *all, int fd)
 //map-specific checks
 int	file_checks(t_data *all, char *file_name)
 {
-	int	fd;
+	int		fd;
+	char	*map_start;
 
 	if (file_invalid_name(file_name, ".cub"))
 		ft_exit(all, ERR_FILE_NAME);
 	fd = file_no_exist(file_name);
 	if (fd == -1)
 		ft_exit(all, ERR_FILE_NOEXIST);
-	if (record_file_attributes(all, fd))
+	map_start = record_file_attributes(all, fd);
+	if (!map_start)
 		return (FAILURE);
 	if (file_err_elements(all, fd))
 		return (FAILURE);
-	if (record_map_attributes(all, fd))
+	if (record_map_attributes(all, fd, map_start))
 		return (FAILURE);
 	close(fd);
 	return (SUCCESS);
