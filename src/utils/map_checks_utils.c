@@ -47,7 +47,7 @@ bool	is_open(char c)
 //function that determines the "safe" value of j used to check walls vertically
 //since lines have different lengths, it is not always possible to iterate j
 //while i remains constant
-void	safe_j(t_data *all, int *j, int i)
+int	safe_j(t_data *all, int *j, int i)
 {
 	int	k;
 
@@ -55,14 +55,15 @@ void	safe_j(t_data *all, int *j, int i)
 	if (*j < all->height)
 	{
 		k = *j + 1;
-		while (k < all->height && i >= ft_strlen(all->raw_map[k]))
+		while (k < all->height && i >= ft_strlen(all->map[k]))
 			k++;
 		*j = k;
 	}
 	else if (*j == all->height)
 	{
-		while (k < all->height && i >= ft_strlen(all->raw_map[k]))
+		while (k < all->height && i >= ft_strlen(all->map[k]))
 			k++;
 		*j = k;
 	}
+	return (SUCCESS);
 }

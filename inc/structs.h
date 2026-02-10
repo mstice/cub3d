@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
+/*   By: ombatkam <ombatkam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:26:57 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/12 16:38:00 by mtice            ###   ########.fr       */
+/*   Updated: 2026/01/12 17:30:40 by mtice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef enum e_area t_area;
-typedef enum e_spawn t_spawn;
-typedef struct s_map t_map;
-typedef struct s_data t_data;
-typedef struct s_three t_three;
-typedef struct s_two t_two;
-typedef struct s_libx t_libx;
+typedef enum e_area			t_area;
+typedef enum e_spawn		t_spawn;
+typedef struct s_data		t_data;
+typedef struct s_img		t_img;
+typedef struct s_player		t_player;
+typedef struct s_room		t_room;
+typedef struct s_raycast	t_raycast;
+typedef struct s_txt		t_txt;
 
 //------------------------------TYPE OF MAP AREAS------------------------------
 typedef enum e_area
@@ -39,61 +40,92 @@ typedef enum e_spawn
 	WEST = 87
 }			t_spawn;
 
+//-----------------------------TEXTURES----------------------------------------
+typedef struct s_txt
+{
+	unsigned int	**txt_address;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+	t_spawn			index;
+}				t_txt;
+
 //--------------------------POINTER TO ALL TYPES OF DATA-----------------------
 typedef struct s_data
 {
-	char			**raw_map;
-	t_three			**map3d;
-	t_two			**map2d;
-	int				height;
-	int				width;
-	int				map_start;
-	t_spawn			player;
-	char			*north;
-	char			*south;
-	char			*east;
-	char			*west;
-	int				floor;
-	int				ceiling;
-	bool			bounds;
-	t_libx			*libx;
+	char		**map;
+	int			height;
+	int			width;
+	int			map_start;
+	t_spawn		player;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	int			floor;
+	int			ceiling;
+	t_room		*game;
+	t_txt		*txt;
 }				t_data;
 
-//-------------------------INITIAL 3D COORDINATES------------------------------
-//After parsing the map, x and y coordiates are collected
-//z coordinates represent the height of the walls
-//colour is the colour of the area the coordinate represents (floor, sky, wall)
-typedef struct s_three
+//-------------------------------STRUCTURE FOR IMAGE---------------------------
+typedef struct s_img
 {
-	int	x;
-	int	y;
-	int	z;
-	int	colour;
-}				t_three;
+	void		*img;
+	void		*img_tmp;
+	char		*addr;
+	char		*addr_tmp;
+	int			bpp;
+	int			len;
+	int			endian;
+}				t_img;
 
-//-------------------------2D COORDINATES--------------------------------------
-//after taking 3d coordinates and performing transformations
-//gives the final x and y coordinates that are going to be used to render
-typedef struct s_two
+//----------------------------PLAYER MOVEMENT----------------------------------
+typedef struct s_player
 {
-	float	x;
-	float	y;
-	int		colour;
-}				t_two;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	int			rotate;
+}				t_player;
 
-//----------------------------MINILIBX-----------------------------------------
-//containes necessary informationi to render the window, images and plot pixels
-typedef struct s_libx
+//--------------------------GAME STRUCTURE-------------------------------------
+typedef struct s_room
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img1;
-	void	*img2;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_libx;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			render_in_progress;
+	t_img		img;
+	t_player	player;
+	t_data		*all;
+}				t_room;
 
+//---------------------------STRUCTURE FOR RAYCASTING--------------------------
+typedef struct s_raycast
+{
+	double		camera_x;
+	double		raydir_x;
+	double		raydir_y;
+	double		delta_x;
+	double		delta_y;
+	double		side_x;
+	double		side_y;
+	double		dist;
+	double		wall_x;
+	int			map_x;
+	int			map_y;
+	int			hit;
+	int			side;
+	int			line_h;
+	int			draw_start;
+	int			draw_end;
+	int			step_x;
+	int			step_y;
+}				t_raycast;
 
 #endif

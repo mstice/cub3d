@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
+/*   By: ombatkam <ombatkam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 09:25:59 by mtice             #+#    #+#             */
-/*   Updated: 2025/12/12 16:39:55 by mtice            ###   ########.fr       */
+/*   Updated: 2026/01/30 15:39:04 by ombatkam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define SUCCESS 0
 # define FAILURE 1
-# define DEBUG 1
 
 //------------------------------COLOURS----------------------------------------
 # define BLACK 0x000000
@@ -25,13 +24,13 @@
 # define YELLOW 0xFFEE00
 # define GREEN 0x4DE94C
 # define BLUE 0x3783FF
+# define SKY 0x87CEEB
 # define PURPLE 0x4815AA
+# define BROWN 0x964B00
 
 //-----------------------------WINDOW SETTINGS---------------------------------
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
-# define WIN_START 200
-# define WIN_END 800
+# define WIN_WIDTH 600
+# define WIN_HEIGHT 600
 # define WIN_NAME "cub3D"
 
 //----------------------------MLX HOOK VARIABLES-------------------------------
@@ -42,27 +41,6 @@
 # define ON_MOUSEMOVE 6
 # define ON_EXPOSE 12
 # define ON_DESTROY 17
-
-# define NO_EVENT_MASK "0L"
-# define KEY_PRESS_MASK "1L<<0"
-# define KEY_RELEASE_MASK "1L<<1"
-# define BUTTON_PRESS_MASK "1L<<2"
-# define BUTTON_RELEASE_MASK "1L<<3"
-# define ENTER_WINDOW_MASK "1L<<4"
-# define LEAVE_WINDOW_MASK "1L<<5"
-
-//-----------------------------------KEYCODES----------------------------------
-# define ESC_KEY 65307
-# define W_KEY
-# define A_KEY
-# define S_KEY
-# define D_KEY
-# define UP_KEY 65364
-# define DOWN_KEY 65362
-# define LEFT_KEY 65361
-# define RIGHT_KEY 65363
-# define SPACE_KEY 32
-# define MOUSE_KEY
 
 //---------------------------------ERROR MESSAGES------------------------------
 # define ERR "Error"
@@ -82,13 +60,22 @@
 # define ERR_COL_FL "Floor colour not properly defined. Usage: <F 120,52,5>"
 # define ERR_COL_DUP "Ceiling and floor colours are the same"
 # define ERR_COL_INV "Some RGB values are invalid or undefined. Range: 0 to 255"
-# define ERR_COL_BAD "Ceiling or floor cannot be pure black or white"
+# define ERR_COL_BAD "Ceiling or floor colour cannot be pure black or white"
 # define ERR_COL_MANY "More than one ceiling or floor colour defined"
 # define ERR_MAP_S "Map is too small. Usage: height > 2 && width > 2"
 # define ERR_MAP_WAL "Map is not surrounded by walls"
-# define ERR_MAP_LAST "Map is not the last content in file"
+# define ERR_MAP_LAST "Map must be the last content in file"
 # define ERR_POS_NOEXIST "Player spawn position on map not specified"
 # define ERR_POS_DUP "Too many player spawn positions specified on map"
+# define ERR_MLX "Minilibx error"
+
+//----------------------------------MAP MACROS---------------------------------
+# define FOV 0.66
+# define ANGLE 18
+# define MOVE_SPEED 0.125
+# define ROT_SPEED 0.15
+# define TXT_SIZE 64
 
 # define ERR_BOUNDS "Tried to draw map out of bounds"
+
 #endif

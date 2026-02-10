@@ -14,9 +14,7 @@
 
 void	init_t_data(t_data *all)
 {
-	all->raw_map = NULL;
-	all->map3d = NULL;
-	all->map2d = NULL;
+	all->map = NULL;
 	all->height = 0;
 	all->width = 0;
 	all->map_start = 0;
@@ -25,8 +23,8 @@ void	init_t_data(t_data *all)
 	all->south = NULL;
 	all->east = NULL;
 	all->west = NULL;
-	all->floor = BLACK;
-	all->ceiling = BLACK;
-	all->bounds = 0;
-	all->libx = NULL;
+	all->floor = -1;
+	all->ceiling = -1;
+	all->game = NULL;
+	all->txt = ft_calloc(1, sizeof(t_txt));
 }

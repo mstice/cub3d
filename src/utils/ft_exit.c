@@ -15,7 +15,7 @@
 //-----------------------------------------------------------------------------
 //ONLY TO BE USED IN CASE OF EXIT_FAILURE!
 //function that displays error message, and frees before exiting with FAILURE
-void	ft_exit(t_data *all, char *err_msg)
+void	ft_exit(t_data *all, char *err_msg, int fd)
 {
 	if (err_msg)
 	{
@@ -24,5 +24,7 @@ void	ft_exit(t_data *all, char *err_msg)
 	}
 	if (all)
 		free_all(all);
+	if (fd > 2)
+		close(fd);
 	exit(EXIT_FAILURE);
 }

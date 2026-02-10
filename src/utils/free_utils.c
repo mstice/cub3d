@@ -28,12 +28,8 @@ void	free_double_char(char **arr)
 //frees elements stored in t_data struct
 static void	free_t_data(t_data *all)
 {
-	if (all->raw_map)
-		free_double_char(all->raw_map);
-	// if (all->map3d)
-	// 	free_double((void *)all->map3d, all->height);
-	// if (all->map2d)
-	// 	free_double((void *)all->map2d, all->height);
+	if (all->map)
+		free_double_char(all->map);
 	if (all->north)
 		free(all->north);
 	if (all->south)
@@ -42,9 +38,33 @@ static void	free_t_data(t_data *all)
 		free(all->east);
 	if (all->west)
 		free(all->west);
+	if (all->txt && all->txt->txt_address)
+	{
+		free(all->txt->txt_address[0]);
+		free(all->txt->txt_address[1]);
+		free(all->txt->txt_address[2]);
+		free(all->txt->txt_address[3]);
+		free(all->txt->txt_address);
+	}
+	if (all->txt)
+		free(all->txt);
 }
 
+//-----------------------------------------------------------------------------
+//frees elements stored in the t_room struct
+static void	free_t_room(t_room *game)
+{
+	mlx_destroy_image(game->mlx, game->img.img);
+	mlx_destroy_image(game->mlx, game->img.img_tmp);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+}
+
+//-----------------------------------------------------------------------------
 void	free_all(t_data *all)
 {
+	if (all->game)
+		free_t_room(all->game);
 	free_t_data(all);
 }

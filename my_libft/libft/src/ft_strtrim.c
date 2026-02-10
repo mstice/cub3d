@@ -43,17 +43,18 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (s1 == NULL)
 		return (NULL);
 	if (s1[0] == '\0')
-		return (ft_strdup(""));
+		return (free((void *)s1), ft_strdup(""));
 	while (s1[i] && ft_strchr(set, s1[i]) != NULL)
 		i++;
 	while (ft_strrchr(set, s1[j]) != NULL && j != 0)
 		j--;
 	if (j < i)
-		return (ft_strdup(""));
+		return (free((void *)s1), ft_strdup(""));
 	trim = (char *)malloc((j - i + 2) * sizeof(char));
 	if (trim == NULL)
-		return (NULL);
+		return (free((void *)s1), NULL);
 	ft_in_trim(trim, s1, i, j);
+	free((void *)s1);
 	return (trim);
 }
 /*
