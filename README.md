@@ -2,6 +2,7 @@
 Grade achieved: 105% ✅
 
 ## ℹ️Description
+Subject: Graphics and 3D Visualisation
 - A 3D First-Person-Shooter game inspired by Wolfenstein
 - Uses a raycasting algorithm
 - Uses the minilibx library developed for 42 students
