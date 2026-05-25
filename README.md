@@ -7,6 +7,8 @@ Grade achieved: 105% ✅
 - Uses a raycasting algorithm
 - Uses the minilibx library developed for 42 students
 
+### 🏆 Bonus Section:
+* Smooth handling of wall collisions
 ## 🛠️ Usage
 ```bash
 git submodule init minilibx-linux
